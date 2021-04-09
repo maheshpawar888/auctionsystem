@@ -16,6 +16,8 @@ app.use('/',register);
 app.use('/',login);
 app.use('/',item);
 
+//pk
+
 
 app.get('/me',(req,res)=>{
     connection.query('select * from users where id=?',[1],(err,result) => {
