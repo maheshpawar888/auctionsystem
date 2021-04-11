@@ -14,6 +14,7 @@ router.post('/login',(req,res)=>{
         } else {
             if(Password == result[0].password){
                 res.json({
+                    'status':1,
                     'userid':result[0].id,
                     'message':'Login Succesfull'
                 })
