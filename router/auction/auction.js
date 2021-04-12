@@ -26,5 +26,17 @@ router.post('/startauction',(req,res) => {
     
 })
 
+router.get('/showliveauction',(req,res) => {
+    // var itemId = req.params.itemId;
+
+    connection.query('SELECT * FROM startauction,item WHERE item.id=startauction.itemId AND startauction.sold=0',(error,result) => {
+        if(error) {
+            res.json(error)
+        } else {
+            res.json(result)
+        }
+    })
+})
+
 module.exports = router;
 

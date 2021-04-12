@@ -46,7 +46,7 @@ router.get('/getItems',(req,res) => {
 
 router.get('/getItems/:id',(req,res) => {
 
-    connection.query('select * from item where ownerId=?',[req.params.id],(err,result) => {
+    connection.query('select * from item where id=?',[req.params.id],(err,result) => {
         if(err) return res.json(err)
 
         res.json(result)
