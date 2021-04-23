@@ -54,5 +54,33 @@ router.get('/getItems/:id',(req,res) => {
     })
 })
 
+router.post('/bid',(req,res) => {
+    const {itemId,userId,bidprice} = req.body;
+
+    connection.query('insert into bidPrice(itemId,userId,bidprice) values (?,?,?)',[itemId,userId,bidprice],(error,result) => {
+        if(error){
+            res.json(error)
+        }
+        else{
+            res.json({
+                'status':1,
+                'message' : 'Bid added'
+            })
+        }
+    })
+})
+
+router.get('/getbid',(req,res)=>{
+    connection.query('SELECT users.username,bidPrice.bidprice FROM bidPrice,users where users.id = bidPrice.userId ORDER BY bidPrice.bidprice DESC',(error,result)=>{
+        if(error){
+            res.json(error)
+        }else{
+            res.json(result)
+        }
+    })
+})
+
+
+
 
 module.exports = router;
